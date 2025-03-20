@@ -46,7 +46,9 @@ public class StoreController {
     }
 
     @GetMapping("/store/{id}/update-form")
-    public String updateForm(@PathVariable("id") int id) {
+    public String updateForm(@PathVariable("id") int id, HttpServletRequest request) {
+        Store store = storeService.상품상세보기(id);
+        request.setAttribute("model", store);
         return "store/update-form";
     }
 
@@ -57,7 +59,8 @@ public class StoreController {
     }
 
     @PostMapping("/store/{id}/update")
-    public String update(@PathVariable("id") int id) {
+    public String update(@PathVariable("id") int id, @RequestParam("name")String name, @RequestParam("stock")int stock, @RequestParam("price")int price) {
+        storeService.상품수정(id, name, stock, price);
         return "redirect:/store/" + id;
     }
 }
