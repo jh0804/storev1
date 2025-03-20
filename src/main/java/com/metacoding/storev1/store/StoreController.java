@@ -1,10 +1,14 @@
 package com.metacoding.storev1.store;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller // IoC(=HashSet / 제어의 역전)에 뜬다 
 public class StoreController {
@@ -15,9 +19,11 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    
+    // 동적 페이지
     @GetMapping("/")
-    public String list() {
+    public String list(HttpServletRequest request) { // MVC
+        List<Store> storeList = storeService.상품목록();
+        request.setAttribute("models", storeList); // Object = List의 Store 타입
         return "store/list";
     }
 

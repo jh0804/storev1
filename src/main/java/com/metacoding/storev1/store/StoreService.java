@@ -1,5 +1,7 @@
 package com.metacoding.storev1.store;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,11 @@ public class StoreService {
     @Transactional // import 주의 jakarta 아님!
     public void 상품등록(String name, int stock, int price){
         storeRepository.save(name, stock, price);
+    }
+
+    // model = List<Store> (움직이는 데이터)
+    public List<Store> 상품목록(){
+        List<Store> storeList = storeRepository.findAll();
+        return storeList;
     }
 }
