@@ -8,6 +8,5 @@ public class Storev1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Storev1Application.class, args);
-		System.out.println("jay : re");
 	}
 }
