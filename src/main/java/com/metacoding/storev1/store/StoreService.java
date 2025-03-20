@@ -31,4 +31,16 @@ public class StoreService {
         Store store = storeRepository.findById(id);
         return store;
     }
+
+    // 3번 : board 프로젝트의 BoardService 참고
+    @Transactional // insert, delete, update시에 사용 : 함수 종료시 commit됨
+    public void 상품삭제(int id) {
+        // 1. 상품 있는지 확인하고 
+        Store store = storeRepository.findById(id);
+        // 2. 삭제하기
+        if (store == null) {
+            throw new RuntimeException("상품이 없는데 왜 삭제를 ㅠㅠ");
+        }
+        storeRepository.deleteById(id); 
+    }
 }
