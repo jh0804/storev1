@@ -30,7 +30,7 @@ public class LogService {
         // 1. 상품 재고 업데이트 (조회, 업데이트)
         Store store = storeRepository.findById(storeId);
         store.재고감소(qty);
-        storeRepository.update(store.getId(), store.getName(), store.getStock(), store.getPrice());
+        storeRepository.updateById(store.getId(), store.getName(), store.getStock(), store.getPrice());
 
         // 2. 구매 기록 하기
         logRepository.save(storeId, qty, qty * store.getPrice(), buyer);

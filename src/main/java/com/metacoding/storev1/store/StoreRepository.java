@@ -48,7 +48,7 @@ public class StoreRepository {
         query.executeUpdate();
     }
 
-    public void update(int id, String name, int stock, int price) {
+    public void updateById(int id, String name, int stock, int price) {
         Query query = em.createNativeQuery("update store_tb set name = ?, stock = ?, price = ? where id = ?");
         query.setParameter(1, name);
         query.setParameter(2, stock);
