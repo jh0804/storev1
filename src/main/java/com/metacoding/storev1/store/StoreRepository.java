@@ -35,7 +35,11 @@ public class StoreRepository {
     public Store findById(int id){
         Query query = em.createNativeQuery("select * from store_tb where id = ?" , Store.class);
         query.setParameter(1, id);
-        return (Store) query.getSingleResult();
+        try {
+            return (Store) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void deleteById(int id){
